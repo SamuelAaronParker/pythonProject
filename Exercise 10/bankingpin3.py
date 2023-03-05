@@ -6,7 +6,7 @@ attempts = 0
 
 while attempts < MAX_ATTEMPTS:
     attempts += 1
-    attempt = getpass.getpass("Enter your PIN: ")
+    attempt = getpass.getpass(prompt="Enter your PIN: ")
     if attempt == pin:
         print("PIN accepted. Time to clean out your bank account")
         break
