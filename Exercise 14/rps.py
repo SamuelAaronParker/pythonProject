@@ -43,6 +43,11 @@ def determine_winner(user_action, computer_action, player):
         return "computer"
 
 
+print("""
+************************************************************
+*        Welcome to the Rock, Paper, Scissors Game!        *
+************************************************************
+""")
 while True:
     mode = input("Select a mode (1 for two-player, 2 for against computer): ")
     if mode == "1":
@@ -64,7 +69,12 @@ while True:
 
             play_again = input("Play again? (y/n): ")
             if play_again.lower() != "y":
-                break
+                play_again = input("Do you want to exit? (y/n): ")
+
+                if play_again.lower() != "n":
+                    exit("Thanks for playing! Goodbye")
+                else:
+                    break
 
     elif mode == "2":
         player = input("Enter player name: ")
@@ -83,7 +93,14 @@ while True:
 
             play_again = input("Play again? (y/n): ")
             if play_again.lower() != "y":
-                break
+                play_again = input("Do you want to exit? (y/n): ")
+
+                if play_again.lower() != "n":
+                    exit("""************************************************************
+*                Thanks for playing! Goodbye!              *
+************************************************************""")
+                else:
+                    break
 
     else:
         print("Invalid mode. Please try again.")
