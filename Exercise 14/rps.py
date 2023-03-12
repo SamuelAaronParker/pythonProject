@@ -26,6 +26,16 @@ def get_user_selection(player):
         return get_user_selection(player)
     return action
 
+def get_user_selection_2p(player):
+    choices = [f"{action.name}[{action.value}]" for action in Action]
+    choices_str = ", ".join(choices)
+    selection = input(f"{player} enter a choice ({choices_str}): ")
+    try:
+        action = Action(int(selection))
+    except ValueError:
+        print("Invalid selection. Please try again.")
+        return get_user_selection_2p(player)
+    return action
 
 def get_computer_selection():
     return random.choice(list(Action))
@@ -67,8 +77,8 @@ while True:
         score1 = 0
         score2 = 0
         while True:
-            user_action1 = get_user_selection(player1)
-            user_action2 = get_user_selection(player2)
+            user_action1 = get_user_selection_2p(player1)
+            user_action2 = get_user_selection_2p(player2)
             result = determine_winner_player(user_action1, user_action2, player1, player2)
             if result == player1:
                 score1 += 1
