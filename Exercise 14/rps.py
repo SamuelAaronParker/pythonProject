@@ -1,6 +1,6 @@
 import random
 from enum import IntEnum
-
+import os
 
 class Action(IntEnum):
     Rock = 0
@@ -29,9 +29,13 @@ def get_user_selection(player):
 def get_user_selection_2p(player):
     choices = [f"{action.name}[{action.value}]" for action in Action]
     choices_str = ", ".join(choices)
-    selection = input(f"{player} enter a choice ({choices_str}): ")
+    if player == player1:
+        selection = input(f"{player} hide your screen from {player2} and enter a choice ({choices_str}): ")
+    else:
+        selection = input(f"{player} enter a choice ({choices_str}): ")
     try:
         action = Action(int(selection))
+        os.system('cls')
     except ValueError:
         print("Invalid selection. Please try again.")
         return get_user_selection_2p(player)
