@@ -42,6 +42,17 @@ def determine_winner(user_action, computer_action, player):
         print(f"{computer_action.name} beats {user_action.name}! Computer wins!")
         return "computer"
 
+def determine_winner_player(user_action, user_action2, player1, player2):
+    if user_action == user_action2:
+        print(f"Both players selected {user_action.name}. It's a tie!")
+        return "tie"
+    elif user_action2 in victories[user_action]:
+        print(f"{user_action.name} beats {user_action2.name}! {player1} wins!")
+        return player1
+    else:
+        print(f"{user_action2.name} beats {user_action.name}! {player2} wins!")
+        return player2
+
 
 print("""
 ************************************************************
@@ -58,7 +69,7 @@ while True:
         while True:
             user_action1 = get_user_selection(player1)
             user_action2 = get_user_selection(player2)
-            result = determine_winner(user_action1, user_action2, player1)
+            result = determine_winner_player(user_action1, user_action2, player1, player2)
             if result == player1:
                 score1 += 1
             elif result == player2:
